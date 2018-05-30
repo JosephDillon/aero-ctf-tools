@@ -1,16 +1,30 @@
-def decipher(cipher_input, offset):
+def encipher(cipher_input, key):
     string = ''
     for char in cipher_input:
-        char_value = ord(char)
-        char_offset = char_value + offset
-        if 65 <= char_value <= 90:
-            if char_offset < 90:
-                string += chr(char_offset)
-            else:
-                string += chr(char_offset - 26)
-        elif 97 <= char_value <= 122:
-            if char_offset < 123:
-                string += chr(char_offset)
-            else:
-                string += chr(char_offset - 26)
+        if ord('a') <= ord(char) <= ord('z'):
+            num = ord(char) - 97
+            num = (num + key)%26
+            num += 97
+            string += chr(num)
+        elif ord('A') <= ord(char) <= ord('Z'):
+            num = ord(char) - 65
+            num = (num + key)%26
+            num += 65
+            string += chr(num)
+    return string
+
+    return string
+def decipher(cipher_input, key):
+    string = ''
+    for char in cipher_input:
+        if ord('a') <= ord(char) <= ord('z'):
+            num = ord(char) - 97
+            num = (num - key) % 26
+            num += 97
+            string += chr(num)
+        elif ord('A') <= ord(char) <= ord('Z'):
+            num = ord(char) - 65
+            num = (num - key) % 26
+            num += 65
+            string += chr(num)
     return string
